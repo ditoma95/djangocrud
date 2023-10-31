@@ -1,0 +1,86 @@
+{% extends "shop/base.html" %}
+  
+{% block content %}
+
+    <div class="px-3 rounded-lg shadow-xl">
+        <form action="">
+          <div class="flex w-full items-center gap-5 justify-between">
+            <div>
+                <label for="">rechercher</label>
+                <div class="flex items-center">
+                  <input class="w-full outline-none flex-1" type="search" name="item-name" id="" placeholder="rechercher un produit">
+                  <input class="w-full outline-none flex-1" type="search" name="item-price" id="" placeholder="rechercher par prix">
+                </div>
+            </div>
+            <div>
+                <button class="bg-green-700 p-2 rounded-lg text-white cursor-pointer" type="submit">Rechercher</button>
+            </div>
+          </div>
+        </form>
+    </div>
+
+
+    <section class="text-gray-600 body-font">
+      <div class="container px-5 py-24 mx-auto">
+        <div class="flex flex-wrap w-full mb-20">
+          <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
+            <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">Listes des produits</h1>
+            <div class="h-1 w-20 bg-red-500 rounded"></div>
+          </div>
+        </div>
+        <div class="flex flex-wrap -m-4">
+          {% for product in product_object %}
+            <div class="xl:w-1/4 md:w-1/2 p-4">
+              <div class="bg-gray-100 p-6 rounded-lg">
+                <img class="h-40 rounded w-full object-cover object-center mb-6" src="https://dummyimage.com/720x400" alt="content">
+                <h2 class="text-lg text-gray-900 font-medium title-font mb-4">{{ product.title }}</h2>
+                <h2 class="text-lg text-yellow-900 font-medium text-center title-font mb-4">{{ product.price }} frcfa</h2>
+                <!-- <p class="leading-relaxed text-base">Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon disrupt edison bulbche.</p> -->
+                <div class="flex items-center justify-between">
+                  <a href="{{ product.id }}" class="bg-yellow-700 p-2 rounded-lg text-white cursor-pointer" type="submit">Voir produit</a href="{{ product.id }}">
+                  <button id="{{ product.id }}" class="dim bg-green-700 p-2 rounded-lg text-white cursor-pointer">Ajouter</button>
+                </div>
+              </div>
+            </div>
+            
+            {% endfor %}
+          </div>
+      </div>
+      <ul class="flex justify-center items-center">
+        {% if product_object.has_previous %}
+          <li class="mr-4 hover:bg-gray-900 p-2 hover:text-white rounded-lg"><a href="?page={{ product_object.previous_page_number }}">Préc</a></li>
+        {% endif %}
+
+        <li class="bg-blue-800 p-2 rounded-md text-white font-bold">
+          <a href="?page={{ product_object.number }}">{{ product_object.number }}</a>
+        </li>
+
+        {% if product_object.has_next %}
+          <li class="ml-4 hover:bg-gray-900 p-2 hover:text-white rounded-lg"><a href="?page={{ product_object.next_page_number}}">Suit</a></li>
+        {% endif %}
+      </ul>
+
+    </section>
+  {% endblock %}
+
+  {% block js %}
+    <script type="text/javascript">
+        if(localStorage.getItem('panier')== null){
+          let panier = {};
+        }else{
+          panier = JSON.parse(localStorage.getItem('panier'));
+        }
+
+        $(document).on('click', '.dim', function(){
+          let item_id = this.id.toString();
+          if(panier[item_id != undefined]){
+            panier[item_id] = panier[item_id]+1;
+          }else{
+            panier[item_id] = 1;
+            localStorage.setItem('panier', JSON.stringify(panier));
+          }
+        });
+    </script>
+  {% endblock %}
+
+
