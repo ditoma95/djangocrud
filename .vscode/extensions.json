@@ -1,0 +1,9 @@
+{
+    "recommendations": [
+        "daozhao.md-editor-helper",
+        "seepine.md-editor",
+        "davidanson.vscode-markdownlint",
+        "henryluo.mark-vsce",
+        "bierner.markdown-preview-github-styles"
+    ]
+}
