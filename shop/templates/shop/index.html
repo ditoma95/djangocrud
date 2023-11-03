@@ -85,7 +85,15 @@
             localStorage.setItem('panier', JSON.stringify(panier));
             document.getElementById('panier').innerHTML ="panier("+  Object.keys(panier).length + ")"
             //console.log(Object.keys(panier).length)
-        });
+      });
+
+      let affiche = document.querySelector('.aff');
+      const viproduit = document.querySelector('.visibleproduit');
+      affiche.addEventListener('click', (e)=>{
+        e.preventDefault();
+        viproduit.classList.toggle('dimitrio');
+      })
+
     </script>
   {% endblock %}
 
