@@ -1,6 +1,7 @@
-### CREATION D'UN PROJET E-COMMERCE DJANGO
+### INSTRUCTION D'INSTALLATION DE CE PROJET
 
-### Processus d'installation 
-```js
-npm install jquery
+
+```html
+
+ldkssssssssssssssfj
 ```
