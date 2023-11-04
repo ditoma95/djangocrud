@@ -1,7 +1,6 @@
 ### INSTRUCTION D'INSTALLATION DE CE PROJET
 
 
-```html
-
-ldkssssssssssssssfj
+```python
+python manage.py tailwind install
 ```
